@@ -22,7 +22,8 @@
         "message": [
           "uv pip install -e .",
           "uv pip install gradio devicetorch",
-          "uv pip install \"fastrtc[vad]\""
+          "uv pip install \"fastrtc[vad]\"",
+          "uv pip install hf_xet"
         ]
       }
     },
