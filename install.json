@@ -1,0 +1,43 @@
+{
+  "run": [
+    {
+      "method": "shell.run",
+      "params": {
+        "message": [
+          "git clone https://github.com/Liquid4All/liquid-audio app"
+        ]
+      }
+    },
+    {
+      "method": "shell.run",
+      "params": {
+        "venv": "venv",
+        "path": "app",
+        "chain": true,
+        "input": null,
+        "conda": {
+          "path": "venv",
+          "python": "python=3.12"
+        },
+        "message": [
+          "uv pip install -e .",
+          "uv pip install gradio devicetorch",
+          "uv pip install \"fastrtc[vad]\""
+        ]
+      }
+    },
+    {
+      "method": "script.start",
+      "params": {
+        "uri": "torch.js",
+        "params": {
+          "path": "app",
+          "venv": "venv",
+          "xformers": false,
+          "triton": true,
+          "sageattention": false
+        }
+      }
+    }
+  ]
+}

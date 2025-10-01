@@ -1,0 +1,35 @@
+{
+  "daemon": true,
+  "run": [
+    {
+      "method": "shell.run",
+      "params": {
+        "path": "app",
+        "venv": "venv",
+        "chain": true,
+        "env": {},
+        "input": null,
+        "conda": {
+          "path": "venv",
+          "python": "python=3.12"
+        },
+        "message": [
+          "liquid-audio-demo"
+        ],
+        "on": [
+          {
+            "event": "/http://\\S+/",
+            "done": true
+          }
+        ]
+      }
+    },
+    {
+      "when": "{{input && input.event && Array.isArray(input.event) && input.event.length > 0}}",
+      "method": "local.set",
+      "params": {
+        "url": "{{input.event[0]}}"
+      }
+    }
+  ]
+}
